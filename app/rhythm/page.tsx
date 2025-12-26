@@ -446,6 +446,11 @@ export default function RhythmPage() {
         });
     }, [isPlaying, isSoundEnabled, playDrumSound, getAudioTime, t]);
 
+    // Mouse/Touch Handler (wrapper for handleInteraction)
+    const handleMouseTouch = useCallback(() => {
+        handleInteraction(); // Call without MIDI event
+    }, [handleInteraction]);
+
     // MIDI Input Handler
     const handleMIDIInput = useCallback((event: MIDINoteEvent) => {
         if (event.type === 'noteOn') {
@@ -463,8 +468,8 @@ export default function RhythmPage() {
 
             <main
                 className="container mx-auto px-4 py-8 max-w-6xl cursor-pointer select-none"
-                onMouseDown={handleInteraction}
-                onTouchStart={handleInteraction}
+                onMouseDown={handleMouseTouch}
+                onTouchStart={handleMouseTouch}
             >
                 <div className="text-center mb-8">
                     <h1 className="text-4xl font-bold text-amber-700">{t('rhythm.title')}</h1>
