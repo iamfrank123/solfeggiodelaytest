@@ -123,7 +123,7 @@ export default function ChallengePage() {
     }, []);
 
     // Unified Input Handler (MIDI + Mouse)
-    const handleInput = useCallback((input: { type: 'midi' | 'mouse', pitch?: number }) => {
+    const handleInput = useCallback((input: { type: 'midi' | 'mouse', pitch?: number, timestamp?: number }) => {
         if (!isPlaying) return;
 
         setActiveNotes(currentNotes => {
